@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JobFinder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="loader"><div class="spin"></div><b>JobFinder</b></div>
+
+<header class="top">
+  <a class="brand" data-v="home"><img data-ic="brief" class="i" alt=""> Job<span>Finder</span></a>
+  <nav id="nav">
+    <a data-v="home" data-i="home"></a><a data-v="jobs" data-i="jobs"></a><a data-v="companies" data-i="companies"></a>
+    <a data-v="test" data-i="test"></a><a data-v="saved" data-i="saved"></a><a data-v="apps" data-i="apps"></a><a data-v="profile" data-i="profile"></a>
+  </nav>
+  <div class="tools">
+    <button id="mSearch" class="ic" aria-label="Search"><img data-ic="search" class="i" alt=""></button>
+    <div id="lang"><button class="fl" data-lang="en" aria-label="English"><img data-ic="f_en" class="fi" alt="EN"></button><button class="fl" data-lang="uz" aria-label="O'zbek"><img data-ic="f_uz" class="fi" alt="UZ"></button><button class="fl" data-lang="ru" aria-label="Русский"><img data-ic="f_ru" class="fi" alt="RU"></button></div>
+    <button id="theme" class="ic" aria-label="Theme"><img id="themeImg" data-ic="moon" class="i" alt=""></button>
+    <div class="bellw" id="bellw" hidden>
+      <button id="bell" class="ic" aria-label="Notifications"><img data-ic="bell" class="i" alt=""><em id="badge" hidden>0</em></button>
+      <div id="notifPanel" hidden></div>
+    </div>
+    <div id="authBtns"><button class="btn ghost sm" data-auth="in" data-i="signin"></button><button class="btn sm" data-auth="up" data-i="signup"></button></div>
+    <div id="userBox" hidden><button class="btn ghost sm" id="avatar" data-v="profile"></button><button class="btn sm" id="logout" data-i="logout"></button></div>
+    <button id="burger" class="ic" aria-label="Menu"><img data-ic="menu" class="i" alt=""></button>
+  </div>
+</header>
+
+<main>
+<section class="view" id="v-home">
+  <div class="hero">
+    <video id="hv" class="hv" autoplay muted loop playsinline preload="auto"><source src="office.mp4" type="video/mp4"><source src="office.webm" type="video/webm"></video><div class="shade"></div>
+    <div class="mesh"></div><span class="bl b1"></span><span class="bl b2"></span><span class="bl b3"></span>
+    <span class="fx f1"><img data-ic="brief" alt=""></span><span class="fx f2"><img data-ic="search" alt=""></span><span class="fx f3"><img data-ic="trophy" alt=""></span>
+    <span class="fx f4"><img data-ic="user" alt=""></span><span class="fx f5"><img data-ic="bell" alt=""></span><span class="fx f6"><img data-ic="pin" alt=""></span>
+    <h1 data-i="heroT"></h1><p data-i="heroS"></p>
+    <form id="hform" class="sbar"><input id="hq" data-ph="searchPh"><select id="hCity"></select><button class="btn" data-i="find"></button></form>
+    <div class="stats" id="hstats"></div>
+  </div>
+  <div class="wrap">
+    <h2 data-i="cats"></h2><div class="chips" id="chips"></div>
+    <h2 data-i="featured"></h2><div class="grid" id="gFeat"></div>
+    <h2 data-i="popJobs"></h2><div class="grid" id="gPop"></div>
+    <h2 data-i="rec"></h2><div class="grid" id="gRec"></div>
+    <h2 data-i="topComp"></h2><div class="grid" id="gTop"></div>
+  </div>
+</section>
+
+<section class="view" id="v-jobs"><div class="wrap">
+  <div class="sbar"><input id="q" data-ph="searchPh"><button class="btn ghost mobonly" id="fToggle" data-i="filters"></button></div>
+  <div class="layout">
+    <aside id="filters">
+      <div class="fh"><b data-i="filters"></b><button class="ic mobonly" id="fClose"><img data-ic="x" class="i" alt=""></button></div>
+      <label><span data-i="location"></span><select id="fCity"></select></label>
+      <label><span data-i="category"></span><select id="fCat"></select></label>
+      <label><span data-i="type"></span><select id="fType"></select></label>
+      <label><span data-i="exp"></span><select id="fExp"></select></label>
+      <label><span data-i="work"></span><select id="fWork"></select></label>
+      <label><span data-i="salary"></span><select id="fSal"></select></label>
+      <button class="btn ghost full" id="fReset" data-i="reset"></button>
+      <button class="btn full mobonly" id="fApply" data-i="show"></button>
+    </aside>
+    <div>
+      <div class="bar"><b id="count"></b><select id="fSort"></select></div>
+      <div class="grid" id="gJobs"></div>
+      <div class="center"><button class="btn ghost" id="more" data-i="more"></button></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="view" id="v-companies"><div class="wrap"><h2 data-i="companies"></h2><div class="grid" id="gComp"></div></div></section>
+<section class="view" id="v-test"><div class="wrap"><div id="testBox"></div><div class="grid" id="gTest"></div></div></section>
+<section class="view" id="v-saved"><div class="wrap"><h2 data-i="saved"></h2><div class="grid" id="gSaved"></div></div></section>
+<section class="view" id="v-apps"><div class="wrap"><h2 data-i="apps"></h2><div id="listApps"></div></div></section>
+
+<section class="view" id="v-profile"><div class="wrap">
+  <h2 data-i="profile"></h2>
+  <div class="stats2" id="pstats"></div>
+  <div class="two">
+    <form id="profForm" class="panel">
+      <label><span data-i="name"></span><input id="pName"></label>
+      <label><span data-i="title"></span><input id="pTitle"></label>
+      <div class="row2"><label><span data-i="phone"></span><input id="pPhone"></label><label><span data-i="location"></span><input id="pCity"></label></div>
+      <label><span data-i="summary"></span><textarea id="pSummary" rows="3"></textarea></label>
+      <label><span data-i="skills"></span><input id="pSkills"></label>
+      <label><span data-i="education"></span><textarea id="pEdu" rows="3"></textarea></label>
+      <label><span data-i="experience"></span><textarea id="pExp" rows="3"></textarea></label>
+      <label><span data-i="languages"></span><input id="pLang"></label>
+      <div class="row2"><button class="btn" data-i="saveProf"></button><button type="button" class="btn ghost" data-v="cv" data-i="buildCv"></button></div>
+    </form>
+    <div class="panel"><b data-i="complete"></b><div class="prog"><i id="pcBar"></i></div><div id="testSum"></div></div>
+  </div>
+  <h2 data-i="rec"></h2><div class="grid" id="gProfRec"></div>
+</div></section>
+
+<section class="view" id="v-cv"><div class="wrap">
+  <h2 data-i="buildCv"></h2>
+  <div class="cvbar">
+    <label><span data-i="template"></span><select id="cvTpl"><option value="modern" data-i="modern"></option><option value="classic" data-i="classic"></option></select></label>
+    <label><span data-i="accent"></span><input type="color" id="cvColor" value="#4f46e5"></label>
+    <button class="btn ghost" data-v="profile" data-i="editProf"></button>
+    <button class="btn" id="printCv" data-i="print"></button>
+  </div>
+  <div id="cvPrev"></div>
+</div></section>
+
+<section class="view" id="v-auth"><div class="authbox">
+  <div class="tabs"><button data-tab="in" data-i="signin"></button><button data-tab="up" data-i="signup"></button></div>
+  <form id="fIn" novalidate>
+    <label><span data-i="email"></span><input id="inEmail" type="email" autocomplete="username"></label>
+    <label><span data-i="pass"></span><div class="pw"><input id="inPass" type="password" autocomplete="current-password"><button type="button" class="eye" data-eye="inPass"><img data-ic="eye" class="i" alt=""></button></div></label>
+    <label class="chk"><input type="checkbox" id="inRem" checked><span data-i="remember"></span></label>
+    <p class="err" id="inErr"></p>
+    <button class="btn full" data-i="signin"></button>
+    <p class="hint">demo@jobfinder.uz / demo1234</p>
+  </form>
+  <form id="fUp" novalidate hidden>
+    <label><span data-i="name"></span><input id="upName" autocomplete="name"></label>
+    <label><span data-i="email"></span><input id="upEmail" type="email" autocomplete="email"></label>
+    <label><span data-i="pass"></span><div class="pw"><input id="upPass" type="password" autocomplete="new-password"><button type="button" class="eye" data-eye="upPass"><img data-ic="eye" class="i" alt=""></button></div></label>
+    <label><span data-i="pass2"></span><div class="pw"><input id="upPass2" type="password" autocomplete="new-password"><button type="button" class="eye" data-eye="upPass2"><img data-ic="eye" class="i" alt=""></button></div></label>
+    <p class="err" id="upErr"></p>
+    <button class="btn full" data-i="signup"></button>
+  </form>
+</div></section>
+</main>
+
+<div id="modal"><div class="box"><button class="x" id="mClose" aria-label="Close"><img data-ic="x" class="i" alt=""></button><div id="mBody"></div></div></div>
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
